@@ -1,0 +1,28 @@
+## @file spherical_armonycs.gpl
+## @brief Plot a sphere in the 3D space
+set parametric
+
+a= 3. / ( 4. * pi )
+c = 1 / ( 4. * pi )  
+
+xR(u,v) = a * sin( u ) * cos( v )
+yR(u,v) = a * sin( u ) * sin( v )
+zR(u) = a * cos( u )
+
+pz( u ) = a * ( cos ( u ) ) ** 2 
+px( u ) = ( a / 2. ) * ( sin(u) )**2
+
+d0( u ) = ( sqrt( 5. / ( 16. * pi ) ) * ( 3.* cos(u) ** 2 - 1 ) ) ** 2
+
+set angle degree
+set urange [0:180]
+set vrange [0:360]
+
+set view equal xyz
+# Sample the angle each 10 degrees
+set isosample 18,36
+
+splot c * xR(u,v), c * yR(u,v), c * zR(u) title "s level",\
+	pz(u) * xR(u,v), pz(u) * yR(u,v), pz(u) * zR(u) title "p_z level", \
+	px(u) * xR(u,v), px(u) * yR(u,v), px(u) * zR(u) title "p_x = p_y level", \
+	d0(u) * xR(u,v), d0(u) * yR(u,v), d0(u) * zR(u) title "d_0 level"

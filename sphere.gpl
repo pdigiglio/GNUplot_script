@@ -1,0 +1,18 @@
+
+## @file sphere.gpl
+## @brief Plot a sphere in the 3D space
+set parametric
+
+a=1
+xR(u,v) = a * sin( u ) * cos( v )
+yR(u,v) = a * sin( u ) * sin( v )
+zR(u) = a * cos( u )
+
+set angle degree
+set urange [0:180]
+set vrange [0:360]
+
+# Sample the angle each 10 degrees
+set isosample 18,36
+
+splot xR(u,v),yR(u,v),zR(u)
