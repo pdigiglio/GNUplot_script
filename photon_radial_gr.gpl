@@ -1,0 +1,26 @@
+set terminal wxt enhanced
+
+set ylabel "ct"
+set xlabel "r"
+
+set title "Radial motion for photons in Schwarzschild metric"
+
+rm = 1.
+
+# outgoing photon radial trajectory
+Op( x ) = x + 2 * rm * log( abs( .5 * x / rm - 1 ) )
+# incoming photon radial trajectory
+Ip( x ) = - x - 2 * rm * log( abs( .5 * x / rm - 1 ) )
+
+xmax=15
+
+kmin = - floor( Op( xmax ) )
+jmin = xmax - floor( Ip( xmax ) )
+
+set size square
+set samples 500
+
+set yrange [0:xmax]
+
+plot [0:xmax] for[k=kmin:xmax] Op( x ) + k notitle lt rgb "red", \
+	for[j=0:jmin] Ip( x ) + j notitle lt rgb "violet"
