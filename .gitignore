@@ -1,0 +1,10 @@
+# output of gnuplot
+*.jpeg
+*.jpg
+
+# fit logs
+*.log
+
+# input data files
+*.dat
+*.dat.*
