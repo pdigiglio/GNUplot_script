@@ -1,0 +1,27 @@
+
+## @file sphere.gpl
+## @brief Plot a \f$\phi^4\f$-potential
+
+mSquared = -32
+lambda = 1
+
+set isosamples 50
+
+set hidden3d
+set parametric
+
+xR(u,v) = u * cos( v )
+yR(u,v) = u * sin( v )
+
+zR(u) = mSquared * u ** 2 + lambda * u ** 4
+
+set angle degree
+set urange [0:6]
+
+set vrange [0:360]
+
+# Sample the angle each 10 degrees
+set isosample 30,36
+
+
+splot xR(u,v),yR(u,v),zR(u)
