@@ -7,7 +7,10 @@ lambda = 1
 
 set isosamples 50
 
-set hidden3d
+#set hidden3d
+
+## set pm3d @ bottom
+set pm3d at b
 set parametric
 
 xR(u,v) = u * cos( v )
