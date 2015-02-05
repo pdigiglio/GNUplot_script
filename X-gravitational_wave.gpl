@@ -1,0 +1,39 @@
+
+## @file 
+## @brief 
+
+## @par wave parameters
+## the wave propagates in the \f$x_3\f$ direction with 
+## wave vector \f$k^\mu = (k,0,0,k)\f$ and amplitude \f$b\f$
+k = 1
+b = .5
+
+set parametric
+set dummy u,t
+
+set urange [0:2*pi]
+set trange [0:2*pi/k]
+
+set isosamples 60, 60
+
+# specify contour levels
+set cntrparam levels discrete 0, .5 * pi / k, pi * k, 1.5 * pi / k
+set contour
+
+set title "Cross polarized gravitational wave"
+
+set xlabel "distance along x (zeta_1)"
+set ylabel "distance along y (zeta_2)"
+set zlabel "time (x0)"
+
+z0 = 0. # fix position of xy-plane
+
+# define initial coordinate separations as parameter
+Xi1( u, t ) = cos(u) - .5 * b *cos( k *( t - z0 ) ) * sin(u)
+Xi2( u, t ) = sin(u) - .5 * b * cos( k *( t - z0 ) ) * cos(u)
+
+set hidden3d
+set grid
+
+splot Xi1(u, t), Xi2(u, t), t
+	
