@@ -1,0 +1,26 @@
+
+## @file dust_only_friedmann_model.gpl
+## @brief Evolution of normalized scale factor as a function of the development angle
+## in a matter-dominated cosmological model
+
+OmegaM0Up = 2.
+OmegaM0Down = .5
+
+
+## This formula holds when the matter density is greater than 1
+aUp( x ) = (1 - cos( x ) ) * OmegaM0Up / ( 2 * ( OmegaM0Up - 1 ) )
+
+## This formula holds when the matter density is smaller than 1
+aDown( x ) = ( cosh( x ) - 1 ) * OmegaM0Down / ( 2 * ( 1 - OmegaM0Down ) )
+
+## THe developement angle varies from \f$[0,\pi]\f$
+set xrange [0:pi]
+
+set grid
+
+set title "normalized scale factor as a function of development angle"
+set ylabel "normalized scale factor"
+set xlabel "development angle"
+
+plot aUp(x) title sprintf( "value of Omega_M0 = %e", OmegaM0Up ), \
+	aDown(x) title sprintf( "value of Omega_M0 = %e", OmegaM0Down )
