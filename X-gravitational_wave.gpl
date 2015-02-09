@@ -1,6 +1,9 @@
 
-## @file 
-## @brief 
+## @file X-gravitational_wave.gpl
+## @brief temporal evolution of a circular non-interacting mass distribution under the
+## influence of a gravitational wave.
+## In the transverse traceless gauge, the coordinates of the masses don't change but their
+## distance does.
 
 ## @par wave parameters
 ## the wave propagates in the \f$x_3\f$ direction with 
@@ -29,7 +32,7 @@ set zlabel "time (x0)"
 z0 = 0. # fix position of xy-plane
 
 # define initial coordinate separations as parameter
-Xi1( u, t ) = cos(u) - .5 * b *cos( k *( t - z0 ) ) * sin(u)
+Xi1( u, t ) = cos(u) - .5 * b * cos( k *( t - z0 ) ) * sin(u)
 Xi2( u, t ) = sin(u) - .5 * b * cos( k *( t - z0 ) ) * cos(u)
 
 set hidden3d
