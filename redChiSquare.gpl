@@ -1,0 +1,18 @@
+## @file redChiSquare.gpl
+
+## @param x the actual value fot \f$\tilde\chi^2\f$
+## @oaram n the number of DOF
+pdf( x, n ) = ( ( .5 * n * x ) ** ( .5 * n ) ) * exp( - .5 * x * n ) / ( x * gamma( .5 * n ) )
+
+set grid
+
+#set samples 50
+
+set title "PDF for reduced ChiSquare with different num. of DOF"
+set xlabel "reduced ChiSquare"
+set ylabel "PDF for redChiSquare"
+
+plot [0:3] nDof = 1    pdf( x, nDof ) title sprintf( "nDOF = %d", nDof),\
+		   nDof = 5    pdf( x, nDof ) title sprintf( "nDOF = %d", nDof),\
+		   nDof = 10   pdf( x, nDof ) title sprintf( "nDOF = %d", nDof),\
+		   nDof = 100  pdf( x, nDof ) title sprintf( "nDOF = %d", nDof)
