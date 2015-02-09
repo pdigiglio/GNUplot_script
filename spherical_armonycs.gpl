@@ -24,5 +24,7 @@ set isosample 18,36
 
 splot c * xR(u,v), c * yR(u,v), c * zR(u) title "s level",\
 	pz(u) * xR(u,v), pz(u) * yR(u,v), pz(u) * zR(u) title "p_z level", \
-	px(u) * xR(u,v), px(u) * yR(u,v), px(u) * zR(u) title "p_x = p_y level", \
-	d0(u) * xR(u,v), d0(u) * yR(u,v), d0(u) * zR(u) title "d_0 level"
+	px(u) * xR(u,v), px(u) * yR(u,v), px(u) * zR(u) title "p_x = p_y level"
+	
+ #	, \
+#	d0(u) * xR(u,v), d0(u) * yR(u,v), d0(u) * zR(u) title "d_0 level"
