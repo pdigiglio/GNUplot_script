@@ -1,0 +1,35 @@
+## @file mass_shell.gpl
+
+set terminal wxt enhanced font "arial"
+set grid
+
+#set isosamples 30, 30
+set pm3d
+
+set xlabel "p_x"
+set ylabel "p_y"
+set zlabel "E/c"
+
+# speed of light
+c = 1.
+
+# rest mass
+m = 0.
+
+# energy/c, positive root
+root( x, y ) = sqrt( (m*c) ** 2 + x ** 2 + y ** 2 )
+
+set parametric
+
+set urange [0:2]
+set vrange [0:2 * pi]
+set isosamples 20, 18
+
+PlusEnergy( u, m ) = sqrt( ( m * c ) ** 2 + u ** 2 )
+
+#splot for [m=0:10:5] root( x, y ) title sprintf( "mass = %.1f", m )
+
+
+splot cos(v) * u, sin(v) * u, PlusEnergy( u, 0 ) title sprintf( "light cone" ), \
+	cos(v) * u, sin(v) * u, PlusEnergy( u, 1 ) title sprintf( "Massive particle (m = %g)", 1 )
+	
