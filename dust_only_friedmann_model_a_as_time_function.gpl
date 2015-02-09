@@ -1,0 +1,49 @@
+
+## @file dust_only_friedmann_model_a_as_time_function.gpl
+## @brief Evolution of normalized scale factor as a function of time
+
+OmegaM0Up = 2.
+OmegaM0Down = .5
+H0 = 1
+
+## This formula holds when the matter density is greater than 1
+aUp( x ) = ( 1 - cos( x ) ) * OmegaM0Up / ( 2 * ( OmegaM0Up - 1 ) )
+tUp( x ) = ( x - sin( x ) ) * OmegaM0Up / ( 2 * H0 * ( OmegaM0Up - 1 ) ** (1.5) )
+
+## This formula holds when the matter density is smaller than 1
+aDown( x ) = ( cosh( x ) - 1 ) * OmegaM0Down / ( 2 * ( 1 - OmegaM0Down ) )
+tDown( x ) = ( sinh( x ) - x ) * OmegaM0Down / ( 2 * H0 * ( 1 - OmegaM0Down ) ** (1.5) )
+
+#########################################################################################
+#
+# BRUTE FORCE INVERSION OF TIME FUNCTIONS
+#
+
+## THe developement angle varies from \f$[0,\pi]\f$
+set xrange [0:pi]
+
+## plot times in a .dat file
+set samples 200
+set table
+
+set output "time1.dat"
+plot tUp(x)
+
+set output "time2.dat"
+plot tDown(x)
+
+unset table
+unset xrange
+#
+########################################################################################
+
+set autoscale
+
+set grid
+
+set title sprintf( "normalized scale factor as a function of development angle (H0 = %g)", H0)
+set ylabel "normalized scale factor"
+set xlabel "time"
+
+plot "time1.dat" u 2:(aUp($1)) w l title sprintf( "value of Omega_M0 = %e", OmegaM0Up ), \
+	"time2.dat" u 2:(aDown($1)) w l title sprintf( "value of Omega_M0 = %e", OmegaM0Down )
