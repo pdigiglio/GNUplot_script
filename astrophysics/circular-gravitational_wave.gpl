@@ -41,7 +41,15 @@ Xi2( u, t ) = sin(u) - .5 * b * ( + l * sin( k *( t - z0 ) ) * cos(u) + cos( k *
 set hidden3d
 set grid
 
-splot Xi1(u, t), Xi2(u, t), t
+## @par
+## Here I plot the evolution for the entire distribution and the trajectories of four
+## particles. The particles move on circles (which become helices when the time evolves)
+splot Xi1(u, t), Xi2(u, t), t title "distribution evolution in time",\
+	Xi1(0, t), Xi2(0, t), t notitle,\
+	Xi1(.5*pi, t), Xi2(.5*pi, t), t notitle,\
+	Xi1(pi, t), Xi2(pi, t), t notitle,\
+	Xi1(1.5*pi, t), Xi2(1.5*pi, t), t notitle
+
 
 # right handed circular polarized wave
 #l = -1
