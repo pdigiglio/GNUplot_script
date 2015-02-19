@@ -1,0 +1,58 @@
+
+## @file particleIdentification.gpl
+## @brief
+##
+
+## @par
+## Assume you have a beam composed of a fraction \f$x\f$ of pions and a fraction \f$(1-x)\f$
+## of kaons. Assume also that your detector triggers a signal with probability \f$P(+|\pi) = y\f$ if it's
+## a pion and \f$P(+|K) = z\f$ if it's a kaon so that \f$P(\pi|+) = 1- P(K|+)\f$.
+
+## Probability that detected particle is a \f$\pi\f$ i.e. \f$P(\pi|+)\f$.
+prob( x, y, z ) = ( y * x ) / ( y * x + (1 - x) * z ) 
+
+pionFraction = .5
+kaonFraction = 1 - pionFraction
+
+set autoscale
+
+numSteps = 2.
+
+#########################################################################################
+#
+# 2D PLOT
+
+#set title sprintf( "Beam of %f pions and %f kaons", pionFraction, kaonFraction )
+#set xlabel "P( + | pion )"
+#set ylabel "P( pion | + )"
+
+#plot [0:1] for[k=0:numSteps] prob( pionFraction, x, k/numSteps) title sprintf( "P( + | K ) = %f", k/numSteps )
+
+## @par
+## From this first plot we see that the probability of having an actual \f$\pi\f$ on a signal
+## is higher if \f$P(+|K)\f$ is small!
+
+#
+#########################################################################################
+
+#########################################################################################
+#
+# 3D PLOT
+
+set title ""
+
+set xlabel "pion fraction"
+set ylabel "P( + | pion )"
+
+set xrange [0:1]
+set yrange [0:1]
+
+splot [0:1] for[k=0:numSteps] prob( x, y, k/numSteps) title sprintf( "P( + | K ) = %f", k/numSteps )
+
+## @par
+## From this last plot we see that in order to have high probabilities on measures, both 
+## the pion fraction and the detector efficiency on pions (if we are looking for pions, obviously)
+## should be high!
+
+#
+#########################################################################################
