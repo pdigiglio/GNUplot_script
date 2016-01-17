@@ -1,0 +1,27 @@
+h = 1
+K = 0
+
+# gaussian
+#f(x)       = ( - exp( -x ** 2 ) + K ) / h
+#f_prime(x) = ( 2 * x * exp( -x ** 2 ) ) / h
+
+# parabola
+#f(x)       = ( x ** 2 + K ) / h
+#f_prime(x) = 2 * x / h
+
+# sinus
+f(x)       = ( sin(x)/x + K ) / h
+f_prime(x) = ( ( x * cos(x) + sin(x) ) /x**2 ) / h
+
+set multiplot layout 4,1
+set grid
+set samples 500
+#set xrange [-3:3]
+
+plot f(x)
+
+plot f_prime(x)
+
+plot cos( f(x) )
+
+plot sin( f(x) )
