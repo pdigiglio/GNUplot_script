@@ -1,0 +1,12 @@
+# define imaginary unit
+i = {0., 1.}
+
+eta = 1.
+T(x) = .5 * ( eta * exp(2*i*x) - 1 ) / i
+
+set size ratio -1 # equal scale for x and y
+set grid
+set parametric
+set trange [0:pi/2]
+
+plot real(T(t)), imag(T(t))
