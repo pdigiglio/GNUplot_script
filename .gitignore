@@ -1,6 +1,7 @@
 # output of gnuplot
 *.jpeg
 *.jpg
+*.eps
 
 # fit logs
 *.log
