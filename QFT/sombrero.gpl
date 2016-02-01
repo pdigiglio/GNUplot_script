@@ -20,11 +20,12 @@ zR(u) = mSquared * u ** 2 + lambda * u ** 4
 
 set angle degree
 set urange [0:6]
-
 set vrange [0:360]
 
 # Sample the angle each 10 degrees
 set isosample 30,36
 
-
-splot xR(u,v),yR(u,v),zR(u)
+set xlabel "Re(z)"
+set ylabel "Im(z)"
+set zlabel "V(z)"
+splot xR(u,v),yR(u,v),zR(u) title sprintf("V(z) = (%g) z^2 + (%g) z^4", mSquared, lambda )
